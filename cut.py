@@ -92,6 +92,7 @@ def cut_one(
     is_flag=True,
     default=False,
     required=False,
+    show_default=True,
     help="是否仅检测结果, 不执行任何操作",
 )
 @click.option(
@@ -112,6 +113,8 @@ def main(
 
     out_lines = []
     out_lines.append("file_name,duration_ms")
+
+    output_folder.mkdir(parents=True, exist_ok=True)
 
     for mp3_file in track(all_files, total=len(all_files)):
         out_path, out_duration_ms = cut_one(
